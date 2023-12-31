@@ -233,6 +233,11 @@ FROM nginx
 COPY  app  /usr/share/nginx/html
 
 ```
+### app folder
+- app (any code in app folder)
+```
+
+```
 
 ### Jenkinsfile
 - Code
@@ -403,12 +408,15 @@ Which events would you like to trigger this webhook? : just the push event.
 
 active 
 
-...
 
-## Automatic WebHook: on Jenkins
+## Automatic WebHook
+- on Jenkins
 ...
 
 buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm polling ( check it)
+
+...
+
 
 
 
