@@ -5,6 +5,10 @@ This repo along with https://github.com/aslamchandio/kubernetesmanifest.git crea
 
 ## Jenkins installation on Ubuntu 22.3-LTS
 
+### References
+- https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+- https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
 ### Step-01: 
 - Update Ubuntu
 ```
@@ -88,7 +92,10 @@ Dashboard > Manage Jenkins > System >
 
 Jenkins Location > Jenkins URL > http://18.77.11.12:8080/  to   http://18.77.11.12:8181/
 
+```
+
 - Jenkins plugins:
+```
 
 - Install the following plugins for the demo.
 
@@ -142,6 +149,64 @@ sudo usermod -aG docker ubuntu
 - Run `sudo chmod 666 /var/run/docker.sock` on the VM after Docker is installed.
 
 ```
+
+## ArgoCD installation 
+
+Install ArgoCD in your Kubernetes cluster following this link - https://argo-cd.readthedocs.io/en/stable/getting_started/
+
+### Requirements
+
+- Installed kubectl command-line tool.
+- Have a kubeconfig file (default location is ~/.kube/config).
+  CoreDNS. Can be enabled for microk8s by microk8s enable dns && microk8s stop && microk8s start
+ 
+### Step-01:
+- Install Argo CD on K8S
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+This will create a new namespace, argocd, where Argo CD services and application resources will live.
+
+```
+
+### Access The Argo CD API Server
+- Service Type Load Balancer
+```
+
+Change the argocd-server service type to LoadBalancer:
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+```
+
+- Port Forwarding:
+```
+
+Kubectl port-forwarding can also be used to connect to the API server without exposing the service.
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+```
+
+### Step-02:
+- ArgoCD install on Linux
+```
+
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+
+argocd admin initial-password -n argocd
+
+This password must be only used for first time login. We strongly recommend you update the password using `argocd account update-password`.
+
+argocd admin initial-password -n argocd
+
+
+
+
+
 
 
 
