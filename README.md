@@ -259,6 +259,144 @@ node {
 
 ```
 
+# Create a First PipeLine on Jenkins
+
+### Step-01: 
+- Pipeline
+```
+Definition : Pipeline Script from SCM
+SCM : Git
+
+Repository URL : https://github.com/aslamchandio/project-app.git
+
+Branch Specifier : Change */master to   */main
+
+
+```
+
+ Second Repo : (Dockerfile,Jenkinsfile & app)
+
+### References
+- https://github.com/aslamchandio/kubernetesmanifest.git (Jenkinsfile & deployment.yaml)
+
+
+### Jenkinsfile
+- Code
+```
+
+node {
+    def app
+
+    stage('Clone repository') {
+      
+
+        checkout scm
+    }
+
+    stage('Update GIT') {
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
+                        sh "git config user.email aslam.chandio03@gmail.com"
+                        sh "git config user.name Aslam Chandio"
+                        //sh "git switch master"
+                        sh "cat deployment.yaml"
+                        sh "sed -i 's+aslam24/project-repo.*+aslam24/project-repo:${DOCKERTAG}+g' deployment.yaml"
+                        sh "cat deployment.yaml"
+                        sh "git add ."
+                        sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/kubernetesmanifest.git HEAD:main"
+      }
+    }
+  }
+}
+}
+
+
+```
+
+### deployment.yaml
+- Code
+...
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firt-deployment
+  labels:
+    app:  first-deployment
+
+spec:  
+  replicas: 3
+  selector:
+    matchLabels:
+      app: first-deployment
+      
+  template:
+    metadata:
+      name: first-deployment
+      labels:
+        app: first-deployment
+    spec:
+      containers:
+        - name: first-deployment
+          image: aslam24/project-app:latest
+          ports:
+            - containerPort: 80 
+
+---
+
+apiVersion: v1 
+kind: Service
+metadata: 
+  name: deployment-lb-service
+  labels:
+    app: deployment-lb-service
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: first-deployment
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+
+...
+
+# Create a Second PipeLine on Jenkins
+
+### Step-01: 
+- Pipeline
+...
+
+Name : updatemanifest > Pipeline
+
+This project is parameterized    add parameter as string
+
+Name: DOCKERTAG
+Default Value: latest
+
+Pipeline
+~~~~~~~~~~
+
+Definition : Pipeline Script from SCM
+SCM : Git
+
+Repository URL : https://github.com/aslamchandio/kubernetesmanifest.git
+
+Branch Specifier : Change */master to   */main
+
+...
+
+#  Automatic WebHook  
+- on Github
+...
+
+
+
+
 
 
 
