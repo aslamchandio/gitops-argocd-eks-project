@@ -203,7 +203,22 @@ argocd admin initial-password -n argocd
 
 ```
 
-## Configurations on Jenkins
+# Configurations on Jenkins
+
+## Create a First PipeLine on Jenkins
+
+### Step-01: 
+- Pipeline
+```
+Definition : Pipeline Script from SCM
+SCM : Git
+
+Repository URL : https://github.com/aslamchandio/project-app.git
+
+Branch Specifier : Change */master to   */main
+
+
+```
 
 - First Repo : (Dockerfile,Jenkinsfile & app)
 
@@ -259,31 +274,40 @@ node {
 
 ```
 
-# Create a First PipeLine on Jenkins
+## Create a Second PipeLine on Jenkins
 
 ### Step-01: 
 - Pipeline
 ```
-Definition : Pipeline Script from SCM
-SCM : Git
 
-Repository URL : https://github.com/aslamchandio/project-app.git
+Name : updatemanifest > Pipeline
+
+This project is parameterized    add parameter as string
+
+Name: DOCKERTAG
+Default Value: latest
+
+Pipeline
+
+
+Repository URL : https://github.com/aslamchandio/kubernetesmanifest.git
 
 Branch Specifier : Change */master to   */main
 
+Definition : Pipeline Script from SCM
+SCM : Git
 
 ```
 
- Second Repo : (Dockerfile,Jenkinsfile & app)
+- Second Repo : (Jenkinsfile & deployment.yaml)
 
 ### References
-- https://github.com/aslamchandio/kubernetesmanifest.git (Jenkinsfile & deployment.yaml)
+- https://github.com/aslamchandio/kubernetesmanifest.git
 
 
 ### Jenkinsfile
 - Code
 ```
-
 node {
     def app
 
@@ -317,9 +341,8 @@ node {
 ```
 
 ### deployment.yaml
-- Code
-...
-
+- Code - Deployment Manifest
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -343,9 +366,13 @@ spec:
         - name: first-deployment
           image: aslam24/project-app:latest
           ports:
-            - containerPort: 80 
+            - containerPort: 80
+                        
+```
 
 ---
+
+- Code - LoadBalancer Manifest
 
 apiVersion: v1 
 kind: Service
@@ -365,34 +392,32 @@ spec:
 
 ...
 
-# Create a Second PipeLine on Jenkins
-
-### Step-01: 
-- Pipeline
-...
-
-Name : updatemanifest > Pipeline
-
-This project is parameterized    add parameter as string
-
-Name: DOCKERTAG
-Default Value: latest
-
-Pipeline
-~~~~~~~~~~
-
-Definition : Pipeline Script from SCM
-SCM : Git
-
-Repository URL : https://github.com/aslamchandio/kubernetesmanifest.git
-
-Branch Specifier : Change */master to   */main
-
-...
-
-#  Automatic WebHook  
+##  Automatic WebHook  
 - on Github
 ...
+
+aslamchandio /project-app   (repo on Github)
+
+setting > Webhooks 
+
+Payload URL : http://18.77.11.12:8080/github-webhook/  or  http://jenkins.chandiolab.site:8080/github-webhook/
+
+Content type : application/json
+
+Which events would you like to trigger this webhook? : just the push event.
+
+active 
+
+...
+
+## Automatic WebHook: on Jenkins
+...
+
+buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm polling ( check it)
+
+...
+
+
 
 
 
