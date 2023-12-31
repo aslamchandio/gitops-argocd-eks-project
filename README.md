@@ -16,6 +16,7 @@ sudo apt install zip unzip git nano vim wget net-tools vim nano htop tree  -y
 ```
 ### Step-02:
 - DEFAULT RULES
+```
 
 sudo ufw status verbose
 
@@ -31,16 +32,22 @@ sudo ufw allow 8080
 sudo ufw enable
 sudo ufw status verbose
 
+```
+
 ### Step-03:
 - Update & Install Java JDK
+```
 
 sudo apt update
 sudo apt install fontconfig openjdk-17-jre
 java -version
 
+```
+
 ### Step-04:
 - Install Jenkins (Long Term Support release)
 - A LTS (Long-Term Support) release is chosen every 12 weeks from the stream of regular releases as the stable release for that time period. It can be installed from the debian-stable apt repository.
+```
 
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
@@ -61,8 +68,11 @@ ps -aux | grep jenkins
 
 netstat -planet | grep 8080
 
+```
+
 ### Step-05:
 - Change Port of Jenkins 8080 to 8181:(if 8080 Port already runnning in your Network)
+```
 
 sudo systemctl edit jenkins --full
 
@@ -88,10 +98,13 @@ Docker Pipeline
 GitHub Integration Plugin
 Parameterized trigger Plugin
 
+```
+
 ## Docker installation on Ubuntu 22.3-LTS
 
 ### Step-01: 
 - Add Docker's official GPG key
+```
 
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -99,8 +112,11 @@ sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
+```
+
 ### Step-02: 
 - Add the repository to Apt sources 
+```
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -108,8 +124,11 @@ echo \
 
   sudo apt-get update
 
+```
+
 ### Step-03: 
 - Install Docker
+```
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
@@ -121,6 +140,8 @@ sudo systemctl enable docker --now
 sudo usermod -aG docker ubuntu
 
 - Run `sudo chmod 666 /var/run/docker.sock` on the VM after Docker is installed.
+
+```
 
 
 
