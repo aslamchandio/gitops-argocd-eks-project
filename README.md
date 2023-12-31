@@ -341,7 +341,7 @@ node {
 ```
 
 ### deployment.yaml
-- Code - Deployment Manifest
+- Code - Deployment & LoadBalancer Service  Manifest
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -368,11 +368,6 @@ spec:
           ports:
             - containerPort: 80
                         
-```
-
----
-
-- Code - LoadBalancer Manifest
 
 apiVersion: v1 
 kind: Service
@@ -390,7 +385,7 @@ spec:
       port: 80
       targetPort: 80
 
-...
+```
 
 ##  Automatic WebHook  
 - on Github
@@ -415,7 +410,7 @@ active
 
 buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm polling ( check it)
 
-...
+
 
 
 
