@@ -105,6 +105,13 @@ Parameterized trigger Plugin
 
 ```
 
+### Step-05:
+- Configure Credentials for DockerHub & Github for Jenkins
+```
+
+
+```
+
 ## Docker installation on Ubuntu 22.3-LTS
 
 ### Step-01: 
@@ -227,7 +234,6 @@ Branch Specifier : Change */master to   */main
 
 
 ### Dockerfile
-- app (any code in app folder)
 ```
 FROM nginx
 COPY  app  /usr/share/nginx/html
@@ -416,6 +422,19 @@ active
 buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm polling ( check it)
 
 ...
+
+## Screenshots
+
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/1-Argo1.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/2-Argo2.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/3-Jenkins1.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/4-Jenkins2.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/5-K8S-1.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/6-K8S-2.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/7-web-hook.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/8-web-hook-jenkin.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/9-App-1.jpg)
+
 
 
 
