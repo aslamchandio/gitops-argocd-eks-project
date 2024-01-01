@@ -433,17 +433,19 @@ buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm pollin
 ![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/7-web-hook.jpg)
 ![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/8-web-hook-jenkin.jpg)
 
-## Screenshots
+## Kubernetes Cluster Configurations
 
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/1-Argo1.jpg)
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/2-Argo2.jpg)
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/3-Jenkins1.jpg)
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/4-Jenkins2.jpg)
 ![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/5-K8S-1.jpg)
 ![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/6-K8S-2.jpg)
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/7-web-hook.jpg)
-![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/8-web-hook-jenkin.jpg)
+
+## App Access from domain name
+
 ![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/9-App-1.jpg)
+
+
+
+
+
 
 
 
