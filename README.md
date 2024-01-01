@@ -212,6 +212,9 @@ argocd admin initial-password -n argocd
 
 ```
 
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/1-Argo1.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/2-Argo2.jpg)
+
 # Configurations on Jenkins
 
 ## Create a First PipeLine on Jenkins
@@ -352,6 +355,8 @@ node {
 
 
 ```
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/3-Jenkins1.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/4-Jenkins2.jpg)
 
 ### deployment.yaml
 - Code - Deployment & LoadBalancer Service  Manifest
@@ -424,6 +429,9 @@ active
 buildimage > pipeline > Build Triggers  >  GitHub hook trigger for GITScm polling ( check it)
 
 ...
+
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/7-web-hook.jpg)
+![App Screenshot](https://github.com/aslamchandio/random-resources/blob/main/images/8-web-hook-jenkin.jpg)
 
 ## Screenshots
 
